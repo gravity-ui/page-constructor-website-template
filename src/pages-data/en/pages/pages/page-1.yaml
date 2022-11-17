@@ -1,0 +1,18 @@
+meta:
+  title: Page 1
+  description: Page 1 content
+  sharing:
+    title: Page 1
+    description: Page 1 content
+    keywords:
+      - Page 1
+
+blocks:
+  - type: 'header-block'
+    title: 'Page 1'
+    description: 'Page 1 content'
+    verticalOffset: 'm'
+    width: 's'
+    imageSize: 's'
+    image:
+      src: 'https://storage.yandexcloud.net/cloud-www-assets/constructor/storybook/images/img-bg_nopadding_4-12_light.png'

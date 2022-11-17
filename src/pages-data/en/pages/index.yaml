@@ -1,0 +1,60 @@
+meta:
+  title: Next.js + page-constructor template
+  description: Template for multi-page SSR website with dynamic content
+  sharing:
+    title: Next.js + page-constructor template
+    description: Template for multi-page SSR website with dynamic content
+    image: 'https://storage.yandexcloud.net/cloud-www-assets/constructor/storybook/images/header-bg-video_light.png'
+    keywords:
+      - nextjs
+      - page-constructor
+
+background:
+  image: 'https://storage.yandexcloud.net/cloud-www-assets/constructor/storybook/images/header-bg-video_light.png'
+  height: 660
+  animated: true
+  parallax: false
+
+blocks:
+  - type: 'header-block'
+    title: 'Next.js + page-constructor template'
+    description: 'Template for multi-page SSR website with dynamic content'
+    verticalOffset: 'xl'
+    width: 's'
+    buttons:
+      - text: 'Documentation'
+        size: 'promo'
+        theme: 'accent'
+        url: 'https://github.com/gravity-ui/page-constructor-website-template'
+
+  - type: 'slider-block'
+    dots: true
+    arrows: true
+    children:
+      - type: 'background-card'
+        title: 'Based on Next.js'
+        text: 'Use all power of Next.js to create scalable websites with SSR support'
+        background:
+          src: 'https://storage.yandexcloud.net/cloud-www-assets/constructor/storybook/images/img-bg_nopadding_4-12_light.png'
+          alt: 'card-background'
+          disableCompress: true
+        url: 'https://nextjs.org/'
+        paddingBottom: 'l'
+      - type: 'background-card'
+        title: 'Page-constructor engine'
+        text: "Build pages of your website with blocks from constructor kit and manage it's content and apperance with simple text configs"
+        background:
+          src: 'https://storage.yandexcloud.net/cloud-www-assets/constructor/storybook/images/img-bg_nopadding_4-12_light.png'
+          alt: 'card-background'
+          disableCompress: true
+        url: 'https://github.com/gravity-ui/page-constructor-website-template'
+        paddingBottom: 'l'
+      - type: 'background-card'
+        title: 'Quick launch'
+        text: "Configure data source and you're ready for production"
+        background:
+          src: 'https://storage.yandexcloud.net/cloud-www-assets/constructor/storybook/images/img-bg_nopadding_4-12_light.png'
+          alt: 'card-background'
+          disableCompress: true
+        url: '#'
+        paddingBottom: 'l'

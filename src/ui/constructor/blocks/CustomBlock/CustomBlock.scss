@@ -1,0 +1,9 @@
+@import '../../../styles/variables.scss';
+
+.custom-block {
+    margin-top: $indentM;
+
+    @media (max-width: map-get($gridBreakpoints, 'sm')) {
+        padding: $indentSM;
+    }
+}

@@ -1,0 +1,18 @@
+meta:
+  title: Page 3
+  description: Page 3 content
+  sharing:
+    title: Page 3
+    description: Page 3 content
+    keywords:
+      - Page 3
+
+blocks:
+  - type: 'header-block'
+    title: 'Page 3'
+    description: 'Page 3 content'
+    verticalOffset: 'm'
+    width: 's'
+    imageSize: 'l'
+    image:
+      src: 'https://storage.yandexcloud.net/cloud-www-assets/constructor/storybook/images/img-bg_nopadding_4-12_light.png'

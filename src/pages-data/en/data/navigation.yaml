@@ -1,0 +1,50 @@
+header:
+  leftItems:
+    - text: Pages
+      type: 'dropdown'
+      items:
+        - text: 'Page 1'
+          url: 'pages/page-1'
+        - text: 'Page 2'
+          url: 'pages/page-2'
+    - text: Page 3
+      url: 'page-3'
+  rightItems:
+    - text: 'Github'
+      url: 'https://github.com/gravity-ui/page-constructor-website-template'
+      icon: 'https://storage.yandexcloud.net/cloud-www-assets/constructor/storybook/icons/git.svg'
+    - type: 'button'
+      text: 'Documentation'
+      url: 'https://github.com/gravity-ui/page-constructor-website-template'
+      theme: pseudo
+
+logo:
+  icon: ''
+  text: 'GravityUI'
+
+footer:
+  underline:
+    links:
+      - text: The MIT License
+        url: 'https://github.com/gravity-ui/page-constructor-website-template/LICENSE'
+    copyright: '© 2022 GravityUI'
+  social:
+    - type: 'social'
+      icon: 'https://storage.yandexcloud.net/cloud-www-assets/constructor/storybook/icons/git.svg'
+      url: 'https://github.com/gravity-ui/page-constructor-website-template'
+  columns:
+    - title: Pages
+      links:
+        - text: 'Page 1'
+          url: '/pages/page-1'
+        - text: 'Page 2'
+          url: '/pages/page-2'
+        - text: 'Page-3'
+          url: '/page-3'
+
+meta:
+  title: Next.js + page-constructor template
+  description: Template for multi-page SSR website with dynamic content
+
+favicon:
+  folder: /assets/favicon

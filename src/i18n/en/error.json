@@ -1,0 +1,12 @@
+{
+  "label_meta-title-404": "Page not found",
+  "label_meta-title-500": "An error occurred",
+  "label_title-code": "Error {{code}}",
+  "label_title-404": "Page doesn't exist",
+  "label_title-500": "The server could not load the page",
+  "label_link-main": "Back to main page",
+  "label_error-description-open": "We are already working on this. Please try ",
+  "label_description-link": "refreshing the page",
+  "label_error-description-close": ".",
+  "pricing_try_again_button": "Try again"
+}
