@@ -11,7 +11,11 @@ Links:
 ## Create project from template
 
 ```bash
-npx create-next-app@latest --example https://github.com/gravity-ui/page-constructor-website-template
+npx create-next-app@latest <my-app> --example https://github.com/gravity-ui/page-constructor-website-template
+
+cd my-app
+
+rm -rf .git
 ```
 
 ## Development <a name="dev"></a>
