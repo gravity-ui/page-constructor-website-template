@@ -1,6 +1,4 @@
-import {PageContent as ConstructorPageContentBase} from '@gravity-ui/page-constructor';
-
-import {NavigationData, MetaData} from './navigation';
+import {PageContent as ConstructorPageContentBase, NavigationData} from '@gravity-ui/page-constructor';
 
 export interface RoutingData {
     hostname: string;
@@ -9,6 +7,11 @@ export interface RoutingData {
 export interface DeviceData {
     isMobile: boolean;
     isTablet: boolean;
+}
+
+export interface MetaData {
+    title: string;
+    description?: string;
 }
 
 export interface PageContentBase {

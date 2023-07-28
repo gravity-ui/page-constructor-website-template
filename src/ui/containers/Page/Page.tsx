@@ -4,10 +4,11 @@ import {useWindowBreakpoint} from '@gravity-ui/page-constructor';
 
 import RoutingContext from '../../../shared/context/RoutingContext';
 import {DEFAULT_LOCALE} from '../../../shared/constants';
-import Layout from '../../../ui/units/navigation/containers/Layout';
+
 import DeviceContext from '../../../shared/context/DeviceContext';
 import Meta from '../../../ui/components/Meta';
 import ErrorPage from '../../../ui/components/ErrorPage';
+import Layout from '../../../ui/components/Layout';
 
 import BreakpointContext from '../../../ui/context/BreakpointContext';
 import CSRFContext from '../../../ui/context/CSRFContext';
@@ -19,7 +20,6 @@ export const Page: React.FC<PageProps> = ({
     meta,
     routingData,
     deviceData,
-    navigationData,
     errorCode,
     csrfToken,
     children,
@@ -35,7 +35,7 @@ export const Page: React.FC<PageProps> = ({
             <BreakpointContext.Provider value={useWindowBreakpoint()}>
                 <DeviceContext.Provider value={deviceData}>
                     <RoutingContext.Provider value={routingData}>
-                        <Layout key={locale} navigationData={navigationData}>
+                        <Layout key={locale}>
                             {errorCode ? (
                                 <ErrorPage code={errorCode} />
                             ) : (

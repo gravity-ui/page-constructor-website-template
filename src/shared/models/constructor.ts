@@ -1,3 +1,3 @@
 export enum BlockType {
-    CustomBlock = 'constructor-custom-blok',
+    CustomBlock = 'constructor-custom-block',
 }
