@@ -1,4 +1,7 @@
-import {ButtonProps} from '@gravity-ui/page-constructor';
+import {
+    ButtonProps,
+    NavigationData as ConstructorNavigationData,
+} from '@gravity-ui/page-constructor';
 
 export enum NavigationItemType {
     Link = 'link',
@@ -79,9 +82,15 @@ export interface MetaData {
     noIndex?: boolean;
     metaSchema?: {[x: string]: unknown};
 }
+
 export interface NavigationData {
     logo: NavigationLogo;
     header: HeaderData;
+    footer: FooterData;
+    meta: MetaData;
+}
+
+export interface NavigationData extends Omit<ConstructorNavigationData, 'footer'> {
     footer: FooterData;
     meta: MetaData;
 }

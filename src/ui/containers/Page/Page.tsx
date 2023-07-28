@@ -17,16 +17,16 @@ export type PageProps = Omit<PageData, 'pageContent'>;
 
 export const Page: React.FC<PageProps> = ({
     meta,
-    navigationData,
     routingData,
     deviceData,
+    navigationData,
     errorCode,
     csrfToken,
     children,
 }) => {
     const {locale = DEFAULT_LOCALE, asPath} = useRouter();
 
-    if (errorCode && !navigationData) {
+    if (errorCode) {
         return <ErrorPage code={errorCode || 500} />;
     }
 

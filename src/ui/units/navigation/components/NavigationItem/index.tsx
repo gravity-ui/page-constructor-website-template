@@ -12,7 +12,7 @@ import {
     NavigationLinkItem,
 } from '../../../../../shared/models';
 import LinkArrow from '../../../../../ui/assets/icons/link-arrow.svg';
-import ButtonLink from '../../../../components/ButtonLink';
+// import ButtonLink from '../../../../components/ButtonLink';
 import SocialIcon from '../SocialIcon';
 
 import './NavigationItem.scss';
@@ -89,7 +89,7 @@ const NavigationLink: React.FC<NavigationLinkProps> = (props) => {
 //todo: add types support form component in map
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const NavigationItemsMap: Record<NavigationItemType, React.ComponentType<any>> = {
-    [NavigationItemType.Button]: ButtonLink,
+    [NavigationItemType.Button]: () => <div/>,
     [NavigationItemType.Social]: SocialIcon,
     [NavigationItemType.Dropdown]: NavigationDropdown,
     [NavigationItemType.Link]: NavigationLink,
