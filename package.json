@@ -24,7 +24,7 @@
     "@doc-tools/components": "^2.3.2",
     "@doc-tools/transform": "^2.18.3",
     "@gravity-ui/i18n": "^1.0.0",
-    "@gravity-ui/page-constructor": "^3.12.1",
+    "@gravity-ui/page-constructor": "^3.15.0",
     "@gravity-ui/uikit": "^4.26.1",
     "bem-cn-lite": "^4.1.0",
     "csurf": "^1.11.0",
