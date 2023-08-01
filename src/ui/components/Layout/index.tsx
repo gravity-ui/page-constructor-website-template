@@ -7,7 +7,7 @@ const b = block('layout');
 
 const Layout: React.FC<PropsWithChildren<{}>> = ({children}) => (
         <div className={b()}>
-            <main className={b('content')}>{children}</main>
+            <div className={b('content')}>{children}</div>
         </div>
     );
 
