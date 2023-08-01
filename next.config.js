@@ -2,7 +2,6 @@ const {join} = require('path');
 const {patchWebpackConfig} = require('next-global-css');
 const withCSS = require('@zeit/next-css');
 const withSass = require('@zeit/next-sass');
-const withPlugins = require('next-compose-plugins');
 const withTM = require('next-transpile-modules')(['@doc-tools/components']);
 
 const cspHeaders = require('./csp');
@@ -39,10 +38,14 @@ const plugins = [
 ];
 
 /** @type {import('next').NextConfig} */
-module.exports = withPlugins(plugins, {
+const nextConfig = {
     reactStrictMode: true,
-    sassLoaderOptions: {
-        includePaths: [join(__dirname, 'src/ui/styles')],
+    trailingSlash: true,
+    compress: true,
+    env: {
+        sassLoaderOptions: {
+            includePaths: [join(__dirname, 'src/ui/styles')],
+        },
     },
     i18n: {
         locales: ['en'],
@@ -74,4 +77,10 @@ module.exports = withPlugins(plugins, {
             },
         ];
     },
-});
+};
+
+//fix next-compose-plugins warnings issue in next 12.3
+module.exports = () =>
+    plugins.reduce((config, [plugin, pluginConfig = {}]) => {
+        return plugin({...config, ...pluginConfig});
+    }, nextConfig);
