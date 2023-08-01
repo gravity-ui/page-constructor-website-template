@@ -1,9 +1,6 @@
 import _ from 'lodash';
 import {Block, ConstructorBlock, Lang} from '@gravity-ui/page-constructor';
-import {
-    contentTransformer,
-    yfmTransformer,
-} from '@gravity-ui/page-constructor/server';
+import {contentTransformer, yfmTransformer} from '@gravity-ui/page-constructor/server';
 
 import {ConfigData, isPageConfig} from '../../../shared/models';
 import {BlockType} from '../../../shared/models/constructor';
@@ -23,7 +20,7 @@ export function preprocess(content: ConfigData, params: PreloadParams) {
         return {
             ...content,
             blocks: transformBlocks(content.blocks, lang),
-        }
+        };
     }
 
     return content;

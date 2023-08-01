@@ -25,13 +25,22 @@ const ConstructorPage: InferGetServerSidePropsType<typeof getServerSideProps> = 
     ...pageProps
 }: PageData) => {
     return (
-        <Page {...pageProps} routingData={routingData} deviceData={deviceData} navigationData={navigationData}>
+        <Page
+            {...pageProps}
+            routingData={routingData}
+            deviceData={deviceData}
+            navigationData={navigationData}
+        >
             <PageConstructorProvider
                 location={{...routingData, Link}}
                 isMobile={deviceData.isMobile}
                 projectSettings={projectSettings}
             >
-                <PageConstructor custom={componentMap} content={pageContent} navigation={navigationData}/>
+                <PageConstructor
+                    custom={componentMap}
+                    content={pageContent}
+                    navigation={navigationData}
+                />
             </PageConstructorProvider>
         </Page>
     );

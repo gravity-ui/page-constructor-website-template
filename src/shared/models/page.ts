@@ -1,4 +1,7 @@
-import {PageContent as ConstructorPageContentBase, NavigationData} from '@gravity-ui/page-constructor';
+import {
+    PageContent as ConstructorPageContentBase,
+    NavigationData as ConstructorNavigaitonData,
+} from '@gravity-ui/page-constructor';
 
 export interface RoutingData {
     hostname: string;
@@ -20,6 +23,7 @@ export interface PageContentBase {
 
 export type PageContent<T> = T & PageContentBase;
 export type ConstructorPageContent = PageContent<ConstructorPageContentBase>;
+export type NavigationData = PageContent<ConstructorNavigaitonData>;
 export type ConfigData = ConstructorPageContent | NavigationData;
 
 export interface PageData<T extends PageContentBase = ConstructorPageContent> {
