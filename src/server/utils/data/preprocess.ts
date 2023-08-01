@@ -1,8 +1,7 @@
 import _ from 'lodash';
-import {ConstructorBlock, Lang} from '@gravity-ui/page-constructor';
+import {Block, ConstructorBlock, Lang} from '@gravity-ui/page-constructor';
 import {
-    transformBlocks as transformConstructorBlocks,
-    transformFootnotes,
+    contentTransformer,
     yfmTransformer,
 } from '@gravity-ui/page-constructor/server';
 
@@ -20,13 +19,10 @@ import {PreloadParams} from './preload';
 export function preprocess(content: ConfigData, params: PreloadParams) {
     const lang = params.locale as Lang;
 
-    if (isPageConfig(content)) {
-        if (content.blocks) {
-            transformBlocks(content.blocks, lang);
-        }
-
-        if (content.footnotes) {
-            content.footnotes = transformFootnotes(content.footnotes, lang);
+    if (isPageConfig(content) && content.blocks) {
+        return {
+            ...content,
+            blocks: transformBlocks(content.blocks, lang),
         }
     }
 
@@ -42,5 +38,11 @@ const config = {
 };
 
 function transformBlocks(blocks: ConstructorBlock[], lang: Lang) {
-    return transformConstructorBlocks(blocks, lang, config);
+    return contentTransformer({
+        content: {blocks},
+        options: {
+            lang,
+            customConfig: config,
+        },
+    }).blocks as Block[];
 }
