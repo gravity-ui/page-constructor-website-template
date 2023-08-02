@@ -25,6 +25,7 @@ export const Page: React.FC<PageProps> = ({
     children,
 }) => {
     const {locale = DEFAULT_LOCALE, asPath} = useRouter();
+    const breakpoint = useWindowBreakpoint();
 
     if (errorCode) {
         return <ErrorPage code={errorCode || 500} />;
@@ -32,7 +33,7 @@ export const Page: React.FC<PageProps> = ({
 
     return (
         <CSRFContext.Provider value={csrfToken}>
-            <BreakpointContext.Provider value={useWindowBreakpoint()}>
+            <BreakpointContext.Provider value={breakpoint}>
                 <DeviceContext.Provider value={deviceData}>
                     <RoutingContext.Provider value={routingData}>
                         <Layout key={locale}>
