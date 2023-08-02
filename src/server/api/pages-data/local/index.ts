@@ -7,7 +7,7 @@ import {getPageConfigFilename} from '../helpers';
 import {PAGES_DATA_DIR} from './constants';
 
 const NOT_FOUND_ERROR_CODE = 'ENOENT';
-const isNodeError = (error: unknown): error is NodeJS.ErrnoException => error instanceof Error
+const isNodeError = (error: unknown): error is NodeJS.ErrnoException => error instanceof Error;
 
 export default async function getData(fileName: string, locale: Locale): Promise<ApiResponseType> {
     const pageConfigPath = resolve(PAGES_DATA_DIR, getPageConfigFilename(fileName, locale));
@@ -21,6 +21,6 @@ export default async function getData(fileName: string, locale: Locale): Promise
             return {statusCode: 404, error: `${fileName} not found for locale ${locale}`};
         }
 
-        return {statusCode: 500, error: (error as Error).message}       
+        return {statusCode: 500, error: (error as Error).message};
     }
 }

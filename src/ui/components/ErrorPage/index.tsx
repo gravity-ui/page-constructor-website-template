@@ -29,12 +29,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({code = 500}) => {
     return (
         <div className={b({code: String(code)})}>
             <Meta data={{title}} />
-            <Image
-                src={imgSrc as unknown as string}
-                alt=""
-                width="220"
-                height="220"
-            />
+            <Image src={imgSrc as unknown as string} alt="" width="220" height="220" />
             <h1 className={b('code')}>{i18nK('label_title-code', {code: publicCode})}</h1>
             <h2 className={b('title')}>{i18nK(`label_title-${publicCode}`)}</h2>
             <p className={b('description')}>
