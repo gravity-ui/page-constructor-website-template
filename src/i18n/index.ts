@@ -25,4 +25,5 @@ export const configureLang = (locale: string = Locale.En) => {
     pcConfigure({lang: locale as PCLang});
 };
 
-export default (keyset: string) => i18n.keyset(keyset);
+const getKeyset = (keyset: string) => i18n.keyset(keyset);
+export default getKeyset;

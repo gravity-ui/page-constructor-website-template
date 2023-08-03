@@ -2,7 +2,7 @@ import yaml from 'js-yaml';
 
 import {preprocess} from '../utils/data/preprocess';
 import logger from '../logger';
-import {ConfigData, Locale, ConstructorPageContent} from '../../shared/models';
+import {ConfigData, Locale, ConstructorPageContent, NavigationData} from '../../shared/models';
 import withCache, {getTTL, MINUTE} from '../utils/cache';
 import getData from './pages-data/impl';
 import {PreloadParams, RequestError} from '../utils';
@@ -52,11 +52,15 @@ const getContentCached = async (ttl: number, fileName: string, params: PreloadPa
     })(fileName, params);
 
 export const getPageContent = (params: PreloadParams) =>
-    getContentCached(getTTL(PAGES_CACHE_TIME), `${CONTENT_PAGES_DIR}/${params.pageName}`, params);
+    getContentCached(
+        getTTL(PAGES_CACHE_TIME),
+        `${CONTENT_PAGES_DIR}/${params.pageName}`,
+        params,
+    ) as Promise<ConstructorPageContent>;
 
 export const getNavigationContent = (params: PreloadParams) =>
     getContentCached(
         getTTL(NAVIGATION_CACHE_TIME),
         `${CONTENT_DATA_DIR}/${NAVIGATION_FILE_NAME}`,
         params,
-    );
+    ) as Promise<NavigationData>;

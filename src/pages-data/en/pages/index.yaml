@@ -47,7 +47,7 @@ blocks:
           src: 'https://storage.yandexcloud.net/cloud-www-assets/constructor/storybook/images/img-bg_nopadding_4-12_light.png'
           alt: 'card-background'
           disableCompress: true
-        url: 'https://github.com/gravity-ui/page-constructor-website-template'
+        url: 'https://github.com/gravity-ui/page-constructor'
         paddingBottom: 'l'
       - type: 'background-card'
         title: 'Quick launch'

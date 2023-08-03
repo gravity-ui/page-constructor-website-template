@@ -1,15 +1,19 @@
-import React, {Fragment} from 'react';
-import NextLink from 'next/link';
+import React, {ReactElement} from 'react';
+import RouterLink from 'next/link';
 import {RouterLinkProps} from '@gravity-ui/page-constructor';
 
-const Link: React.FC<RouterLinkProps> = ({href, children}) => (
-    <NextLink href={href} passHref>
-        {/*
-            Link nested functional component ref passing problem fix:
-            https://github.com/vercel/next.js/issues/7915
-        */}
-        <Fragment>{children}</Fragment>
-    </NextLink>
-);
+const Link: React.FC<RouterLinkProps> = ({href, children}) => {
+    const CustomLink = React.forwardRef((props, ref) =>
+        React.cloneElement(children as ReactElement, {...props, ref}),
+    );
+
+    CustomLink.displayName = 'CustomLink';
+
+    return (
+        <RouterLink href={href} passHref legacyBehavior>
+            <CustomLink />
+        </RouterLink>
+    );
+};
 
 export default Link;
