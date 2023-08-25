@@ -21,11 +21,10 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@doc-tools/components": "^2.3.2",
-    "@doc-tools/transform": "^2.18.3",
+    "@doc-tools/transform": "^3.9.0",
     "@gravity-ui/i18n": "^1.0.0",
-    "@gravity-ui/page-constructor": "^3.15.0",
-    "@gravity-ui/uikit": "^4.26.1",
+    "@gravity-ui/page-constructor": "^4.4.1",
+    "@gravity-ui/uikit": "^5.9.0",
     "bem-cn-lite": "^4.1.0",
     "csurf": "^1.11.0",
     "fast-json-parse": "^1.0.3",
@@ -40,6 +39,11 @@
     "react-router-dom": "^6.2.1",
     "split2": "^4.1.0",
     "ua-parser-js": "^1.0.2"
+  },
+  "overrides": {
+    "react-final-form": {
+      "react": "^18.2.0"
+    }
   },
   "devDependencies": {
     "@gravity-ui/eslint-config": "^1.0.2",
