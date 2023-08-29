@@ -23,7 +23,7 @@
   "dependencies": {
     "@doc-tools/transform": "^3.9.0",
     "@gravity-ui/i18n": "^1.0.0",
-    "@gravity-ui/page-constructor": "^4.4.1",
+    "@gravity-ui/page-constructor": "^4.5.1",
     "@gravity-ui/uikit": "^5.9.0",
     "bem-cn-lite": "^4.1.0",
     "csurf": "^1.11.0",
