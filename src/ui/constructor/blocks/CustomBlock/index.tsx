@@ -1,5 +1,5 @@
 import React from 'react';
-import block from 'bem-cn-lite';
+import {block} from '../../../utils/cn';
 
 import {Title} from '@gravity-ui/page-constructor';
 

@@ -1,5 +1,5 @@
 import React, {PropsWithChildren} from 'react';
-import block from 'bem-cn-lite';
+import {block} from '../../utils/cn';
 
 import './Layout.scss';
 

@@ -21,11 +21,11 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "@bem-react/classname": "^1.6.0",
     "@doc-tools/transform": "^3.9.0",
     "@gravity-ui/i18n": "^1.0.0",
-    "@gravity-ui/page-constructor": "^4.5.1",
+    "@gravity-ui/page-constructor": "^4.9.0",
     "@gravity-ui/uikit": "^5.9.0",
-    "bem-cn-lite": "^4.1.0",
     "csurf": "^1.11.0",
     "fast-json-parse": "^1.0.3",
     "lodash": "^4.17.21",
