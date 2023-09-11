@@ -1,7 +1,5 @@
 node_modules
 
-eslint-plugin-local
-
 csp.js
 next.config.js
 src/server/api/pages-data/impl.js
