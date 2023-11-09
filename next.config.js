@@ -1,8 +1,6 @@
 const { join } = require('path');
 const { patchWebpackConfig } = require('next-global-css');
 
-// const cspHeaders = require('./csp');
-
 /** @type {import('next').NextConfig} */
 module.exports = {
     output: 'export',

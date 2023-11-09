@@ -10,14 +10,11 @@ const LOCALES = [{ lang: 'en' }, { lang: 'de' }];
 const PAGES = ['index', 'page-3', 'pages/page-1', 'pages/page-2'];
 const PAGES_DIR = path.resolve('.', 'src/pages-data/en/pages');
 
-console.log('__PAGES_DIR', PAGES_DIR);
-
 const ConstructorPage = ({
     //@ts-ignore
     data,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }): InferGetStaticPropsType<typeof getStaticProps> => {
-    console.log('__DATA', data);
     return (
         <html>
             <body>
