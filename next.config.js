@@ -1,5 +1,5 @@
-const { join } = require('path');
-const { patchWebpackConfig } = require('next-global-css');
+const {join} = require('path');
+const {patchWebpackConfig} = require('next-global-css');
 
 /** @type {import('next').NextConfig} */
 module.exports = {
