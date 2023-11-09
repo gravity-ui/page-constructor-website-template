@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "npm run clean && next dev",
-    "build": "npm run clean && next build",
+    "build": "npm run clean && next build && next export",
     "start": "next start",
     "start:dev": "NODE_ENV=development next start",
-    "clean": "npx rimraf .next",
+    "clean": "npx rimraf .next out",
     "typecheck": "tsc -p . --noEmit",
     "svgo": "svgo --multipass --pretty",
     "lint": "run-s lint:js lint:styles lint:prettier typecheck",

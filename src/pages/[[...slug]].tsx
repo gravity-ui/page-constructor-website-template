@@ -1,53 +1,60 @@
-import {
-    InferGetServerSidePropsType,
-    GetServerSidePropsContext,
-    GetServerSideProps,
-} from 'next/types';
-import {PageConstructor, PageConstructorProvider} from '@gravity-ui/page-constructor';
+import type { InferGetStaticPropsType, GetStaticProps } from 'next';
+import yaml from 'js-yaml';
+import path from 'path';
+import { readFile } from 'fs/promises';
+import { ConfigData } from '../shared/models';
+import { preprocess } from '../server/utils';
+import { PageConstructor } from '@gravity-ui/page-constructor';
 
-import {PageData} from '../shared/models';
-import componentMap from '../ui/constructor/componentMap';
-import Link from '../ui/components/Link';
+const LOCALES = [{ lang: 'en' }, { lang: 'de' }];
+const PAGES = ['index', 'page-3', 'pages/page-1', 'pages/page-2'];
+const PAGES_DIR = path.resolve('.', 'src/pages-data/en/pages');
 
-import {Page} from '../ui/containers/Page/Page';
-import {getPageContent} from '../server/api/pages-data';
-import withAppData, {getPreloadParams} from '../server/utils/pages/withAppData';
+console.log('__PAGES_DIR', PAGES_DIR);
 
-const projectSettings = {
-    disableCompress: true,
-};
-
-const ConstructorPage: InferGetServerSidePropsType<typeof getServerSideProps> = ({
-    pageContent,
-    navigationData,
-    routingData,
-    deviceData,
-    ...pageProps
-}: PageData) => {
+const ConstructorPage = ({
+    //@ts-ignore
+    data,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+}): InferGetStaticPropsType<typeof getStaticProps> => {
+    console.log('__DATA', data);
     return (
-        <Page
-            {...pageProps}
-            routingData={routingData}
-            deviceData={deviceData}
-            navigationData={navigationData}
-        >
-            <PageConstructorProvider
-                location={{...routingData, Link}}
-                isMobile={deviceData.isMobile}
-                projectSettings={projectSettings}
-            >
-                <PageConstructor
-                    custom={componentMap}
-                    content={pageContent}
-                    navigation={navigationData}
-                />
-            </PageConstructorProvider>
-        </Page>
+        <html>
+            <body>
+                <PageConstructor content={data} />
+            </body>
+        </html>
     );
 };
 
-export const getServerSideProps: GetServerSideProps = withAppData(
-    (context: GetServerSidePropsContext) => getPageContent(getPreloadParams(context)),
-);
+export const getStaticProps: GetStaticProps = async (context) => {
+    const slug = context.params?.slug as string;
+    const pagePath = Array.isArray(slug) ? slug.join('/') : slug;
+    const pagePathFull = path.join(PAGES_DIR, `${pagePath}.yaml`);
+
+    const pageData = await readFile(pagePathFull, { encoding: 'utf-8' });
+    const content = (pageData && yaml.load(pageData)) as ConfigData;
+    const processed = preprocess(content, { locale: 'en', pageName: pagePath });
+
+    return {
+        props: {
+            data: processed,
+        },
+    };
+};
+
+export async function getStaticPaths() {
+    return {
+        paths: PAGES.map((data) =>
+            LOCALES.map((locale) => ({
+                params: {
+                    slug: data.split('/'),
+                    locale,
+                },
+            })),
+        ).flat(),
+        fallback: false,
+    };
+}
 
 export default ConstructorPage;

@@ -1,10 +1,11 @@
-const {join} = require('path');
-const {patchWebpackConfig} = require('next-global-css');
+const { join } = require('path');
+const { patchWebpackConfig } = require('next-global-css');
 
-const cspHeaders = require('./csp');
+// const cspHeaders = require('./csp');
 
 /** @type {import('next').NextConfig} */
 module.exports = {
+    output: 'export',
     reactStrictMode: true,
     trailingSlash: true,
     compress: true,
@@ -12,10 +13,8 @@ module.exports = {
     sassOptions: {
         includePaths: [join(__dirname, 'src/ui/styles')],
     },
-    i18n: {
-        locales: ['en'],
-        defaultLocale: 'en',
-        localeDetection: false,
+    images: {
+        unoptimized: true,
     },
     webpack: (config, options) => {
         patchWebpackConfig(config, options);
@@ -37,30 +36,5 @@ module.exports = {
         }
 
         return config;
-    },
-    async headers() {
-        return [
-            {
-                source: '/:path*',
-                headers: [
-                    {
-                        key: 'Content-Security-Policy',
-                        value: cspHeaders,
-                    },
-                ],
-            },
-        ];
-    },
-    async rewrites() {
-        return [
-            {
-                source: '/robots.txt',
-                destination: '/api/robots',
-            },
-            {
-                source: '/ping',
-                destination: '/api/ping',
-            },
-        ];
     },
 };
