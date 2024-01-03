@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "npm run clean && next dev",
-    "build": "npm run clean && next build && next export",
+    "build": "npm run clean && next build",
+    "dev:export": "EXPORT_MODE=true npm run dev",
+    "build:export": "EXPORT_MODE=true npm run build && EXPORT_MODE=true next export",
     "start": "next start",
     "start:dev": "NODE_ENV=development next start",
+    "start:export": "EXPORT_MODE=true next start",
     "clean": "npx rimraf .next out",
     "typecheck": "tsc -p . --noEmit",
     "svgo": "svgo --multipass --pretty",

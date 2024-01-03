@@ -1,0 +1,46 @@
+const {join} = require('path');
+const {patchWebpackConfig} = require('next-global-css');
+
+const mode = process.env.EXPORT_MODE ? 'export' : 'default';
+const modeRelatedConfig = require(`./modes/${mode}.js`);
+
+/** @type {import('next').NextConfig} */
+module.exports = {
+    ...modeRelatedConfig,
+    reactStrictMode: true,
+    trailingSlash: true,
+    compress: true,
+    transpilePackages: ['@doc-tools/components'],
+    sassOptions: {
+        includePaths: [join(__dirname, 'src/ui/styles')],
+    },
+    webpack: (config, options) => {
+        patchWebpackConfig(config, options);
+
+        config.module.rules.push({
+            test: /\.svg$/,
+            include: join(__dirname, 'src/ui/assets/images'),
+            use: ['url-loader'],
+        });
+
+        config.module.rules.push({
+            test: /\.svg$/,
+            exclude: join(__dirname, 'src/ui/assets/images'),
+            use: ['@svgr/webpack'],
+        });
+
+        if (!options.isServer) {
+            config.resolve.fallback.fs = false;
+        }
+
+        // api routes are not supported on export mode, need to exclude it from build
+        if (mode === 'export') {
+            config.module.rules?.push({
+                test: /src\/app\/api/,
+                loader: 'ignore-loader',
+            });
+        }
+
+        return config;
+    },
+};
