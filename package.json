@@ -24,7 +24,7 @@
     "@bem-react/classname": "^1.6.0",
     "@doc-tools/transform": "^3.9.0",
     "@gravity-ui/i18n": "^1.0.0",
-    "@gravity-ui/page-constructor": "^4.9.0",
+    "@gravity-ui/page-constructor": "^4.43.1",
     "@gravity-ui/uikit": "^5.9.0",
     "csurf": "^1.11.0",
     "fast-json-parse": "^1.0.3",

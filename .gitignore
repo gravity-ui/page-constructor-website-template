@@ -8,6 +8,7 @@ node_modules
 
 # Generated content
 /build
+/out
 .next
 
 # Development
