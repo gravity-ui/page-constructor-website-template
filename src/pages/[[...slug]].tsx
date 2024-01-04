@@ -6,6 +6,8 @@ import Link from '../ui/components/Link';
 
 import {Page} from '../ui/containers/Page/Page';
 import {PageProps} from '../dataGetters/static';
+import {useDevice} from '../ui/hooks/device';
+import {useRoutingData} from '../ui/hooks/router';
 
 export {getStaticPaths, getStaticProps} from '../dataGetters/static';
 
@@ -16,10 +18,13 @@ const projectSettings = {
 const ConstructorPage: PageProps = ({
     pageContent,
     navigationData,
-    routingData,
-    deviceData,
+    routingData: serverRoutingData,
+    deviceData: serverDeviceData,
     ...pageProps
 }: PageData) => {
+    const deviceData = useDevice(serverDeviceData);
+    const routingData = useRoutingData(serverRoutingData);
+
     return (
         <Page
             {...pageProps}

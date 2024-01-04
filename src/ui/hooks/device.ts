@@ -1,11 +1,16 @@
-import {BREAKPOINTS} from '@gravity-ui/page-constructor';
-import {useContext} from 'react';
-import DeviceContext from '../../shared/context/DeviceContext';
-import BreakpointContext from '../context/BreakpointContext';
+import {BREAKPOINTS, useWindowBreakpoint} from '@gravity-ui/page-constructor';
+import {useMemo} from 'react';
+import {DeviceData} from '../../shared/models';
 
-export const useIsMobile = (breakpoint = BREAKPOINTS.sm) => {
-    const {isMobile} = useContext(DeviceContext);
-    const currentBreakpoint = useContext(BreakpointContext);
+export const useDevice = (deviceData?: DeviceData) => {
+    const breakpoint = useWindowBreakpoint();
+    const {isMobile, isTablet} = deviceData || {};
 
-    return isMobile || currentBreakpoint <= breakpoint;
+    return useMemo(
+        () => ({
+            isMobile: isMobile || breakpoint <= BREAKPOINTS.sm,
+            isTablet: isTablet || (breakpoint > BREAKPOINTS.sm && breakpoint <= BREAKPOINTS.md),
+        }),
+        [breakpoint, isMobile, isTablet],
+    );
 };

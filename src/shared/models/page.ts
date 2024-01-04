@@ -4,12 +4,12 @@ import {
 } from '@gravity-ui/page-constructor';
 
 export interface RoutingData {
-    hostname: string;
+    hostname?: string;
 }
 
 export interface DeviceData {
-    isMobile: boolean;
-    isTablet: boolean;
+    isMobile?: boolean;
+    isTablet?: boolean;
 }
 
 export interface MetaData {
@@ -29,11 +29,11 @@ export type ConfigData = ConstructorPageContent | NavigationData;
 export interface PageData<T extends PageContentBase = ConstructorPageContent> {
     pageContent: T;
     navigationData: NavigationData;
-    routingData: RoutingData;
-    deviceData: DeviceData;
     meta: MetaData;
     csrfToken: string;
     errorCode: number | null;
+    routingData?: RoutingData;
+    deviceData?: DeviceData;
 }
 
 export function isPageConfig(config: ConfigData): config is ConstructorPageContent {
