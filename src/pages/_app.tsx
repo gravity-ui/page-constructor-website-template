@@ -12,7 +12,7 @@ import '../ui/styles/globals.css';
 configureLang();
 
 function MyApp({Component, pageProps}: AppProps) {
-    useInitialize();
+    useInitialize(pageProps);
 
     return (
         <ErrorBoundary>

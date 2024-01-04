@@ -1,16 +1,19 @@
 import {GetStaticPropsContext} from 'next/types';
 import {configureLang} from '../../../i18n';
-import {DEFAULT_LOCALE} from '../../../shared/constants';
-import logger from '../../logger';
 import preload from '../data/preload';
 import {ConstructorPageContent, PageContentBase} from '../../../shared/models';
+import {DEFAULT_LOCALE} from '../../../shared/constants';
 
 export type FetchPageData<T> = (context: GetStaticPropsContext) => Promise<T>;
 
-const DEFAULT_PAGE = 'index';
+export const DEFAULT_PAGE = 'index';
+
+export const getStaticLocale = () => process.env.EXPORT_LOCALE || DEFAULT_LOCALE;
+
+const locale = getStaticLocale();
 
 export function getPreloadParams(context: GetStaticPropsContext) {
-    const {locale = DEFAULT_LOCALE, params: {slug = DEFAULT_PAGE} = {}} = context;
+    const {params: {slug = DEFAULT_PAGE} = {}} = context;
     const pageName = Array.isArray(slug) ? slug.join('/') : slug;
 
     return {locale, pageName};
@@ -20,28 +23,17 @@ export default function withAppStaticData<T extends PageContentBase = Constructo
     fetchPageData: FetchPageData<T>,
 ) {
     return async function getStaticProps(context: GetStaticPropsContext) {
-        const {locale = DEFAULT_LOCALE, params: {slug = DEFAULT_PAGE} = {}} = context;
+        const {params: {slug = DEFAULT_PAGE} = {}} = context;
         const pageName = Array.isArray(slug) ? slug.join('/') : slug;
         configureLang(locale);
 
-        try {
-            const data = await preload<T>({locale, pageName}, () => fetchPageData(context));
+        const data = await preload<T>({locale, pageName}, () => fetchPageData(context));
 
-            return {
-                props: {
-                    ...data,
-                    routingData: {hostname: ''},
-                    deviceData: {},
-                },
-            };
-        } catch (err) {
-            logger.error(err, 'DATA_LOADING_ERROR');
-
-            return {
-                props: {
-                    errorCode: 500,
-                },
-            };
-        }
+        return {
+            props: {
+                ...data,
+                locale,
+            },
+        };
     };
 }

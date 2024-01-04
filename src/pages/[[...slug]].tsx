@@ -8,6 +8,7 @@ import {Page} from '../ui/containers/Page/Page';
 import {PageProps} from '../dataGetters/static';
 import {useDevice} from '../ui/hooks/device';
 import {useRoutingData} from '../ui/hooks/router';
+import {useLocale} from '../ui/hooks/locale';
 
 export {getStaticPaths, getStaticProps} from '../dataGetters/static';
 
@@ -20,14 +21,17 @@ const ConstructorPage: PageProps = ({
     navigationData,
     routingData: serverRoutingData,
     deviceData: serverDeviceData,
+    locale: serverLocale,
     ...pageProps
 }: PageData) => {
     const deviceData = useDevice(serverDeviceData);
     const routingData = useRoutingData(serverRoutingData);
+    const locale = useLocale(serverLocale);
 
     return (
         <Page
             {...pageProps}
+            locale={locale}
             routingData={routingData}
             deviceData={deviceData}
             navigationData={navigationData}

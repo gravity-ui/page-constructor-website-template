@@ -4,7 +4,7 @@ import {preprocess} from '../utils/data/preprocess';
 import logger from '../logger';
 import {ConfigData, Locale, ConstructorPageContent, NavigationData} from '../../shared/models';
 import withCache, {getTTL, MINUTE} from '../utils/cache';
-import getData from './pages-data/impl';
+import {get as getData} from './pages-data/impl';
 import {PreloadParams, RequestError} from '../utils';
 
 export const CONTENT_PAGES_DIR = 'pages';

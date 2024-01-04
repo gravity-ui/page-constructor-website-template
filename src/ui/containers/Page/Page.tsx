@@ -2,7 +2,6 @@ import {Fragment} from 'react';
 import {useRouter} from 'next/router';
 
 import RoutingContext from '../../../shared/context/RoutingContext';
-import {DEFAULT_LOCALE} from '../../../shared/constants';
 
 import DeviceContext from '../../../shared/context/DeviceContext';
 import Meta from '../../../ui/components/Meta';
@@ -10,21 +9,22 @@ import ErrorPage from '../../../ui/components/ErrorPage';
 import Layout from '../../../ui/components/Layout';
 
 import CSRFContext from '../../../ui/context/CSRFContext';
-import {PageData} from '../../../shared/models';
+import {PageData, ServerDetectedProps} from '../../../shared/models';
 
 export interface PageProps
-    extends Omit<PageData, 'pageContent' | 'deviceData' | 'routingData'>,
-        Required<Pick<PageData, 'deviceData' | 'routingData'>> {}
+    extends Omit<PageData, 'pageContent' | keyof ServerDetectedProps>,
+        Required<Pick<PageData, keyof ServerDetectedProps>> {}
 
 export const Page: React.FC<PageProps> = ({
     meta,
+    locale,
     routingData,
     deviceData,
     errorCode,
     csrfToken,
     children,
 }) => {
-    const {locale = DEFAULT_LOCALE, asPath} = useRouter();
+    const {asPath} = useRouter();
 
     if (errorCode) {
         return <ErrorPage code={errorCode || 500} />;

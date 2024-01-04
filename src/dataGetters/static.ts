@@ -1,28 +1,39 @@
-import type {GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType} from 'next';
-import withAppStaticData, {getPreloadParams} from '../server/utils/pages/withStaticAppData';
+import type {
+    GetStaticPaths,
+    GetStaticProps,
+    GetStaticPropsContext,
+    InferGetStaticPropsType,
+} from 'next';
+import withAppStaticData, {
+    DEFAULT_PAGE,
+    getPreloadParams,
+    getStaticLocale,
+} from '../server/utils/pages/withStaticAppData';
 import {getPageContent} from '../server/api/pages-data';
+import {list as listPages} from '../server/api/pages-data/local';
 
-const LOCALES = [{lang: 'en'}, {lang: 'de'}];
-const PAGES = ['/', 'pages/page-1', 'pages/page-2', 'page-3'];
+const getPageSlugFromName = (pageName: string) =>
+    pageName === DEFAULT_PAGE ? [''] : pageName.split('/');
 
 export const getStaticProps: GetStaticProps = withAppStaticData((context: GetStaticPropsContext) =>
     getPageContent(getPreloadParams(context)),
 );
 
-export async function getStaticPaths() {
-    const paths = {
-        paths: PAGES.map((data) =>
-            LOCALES.map((locale) => ({
-                params: {
-                    slug: data.split('/'),
-                    locale,
-                },
-            })),
-        ).flat(),
+export const getStaticPaths: GetStaticPaths = async () => {
+    const locale = getStaticLocale();
+    const pages = await listPages(locale);
+    const paths = pages.map((pageName: string) => {
+        return {
+            params: {
+                slug: getPageSlugFromName(pageName),
+            },
+        };
+    });
+
+    return {
+        paths,
         fallback: false,
     };
-
-    return paths;
-}
+};
 
 export type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
