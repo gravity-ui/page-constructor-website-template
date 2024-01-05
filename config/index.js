@@ -19,13 +19,13 @@ module.exports = {
 
         config.module.rules.push({
             test: /\.svg$/,
-            include: join(__dirname, 'src/ui/assets/images'),
+            include: join(__dirname, '../src/ui/assets/images'),
             use: ['url-loader'],
         });
 
         config.module.rules.push({
             test: /\.svg$/,
-            exclude: join(__dirname, 'src/ui/assets/images'),
+            exclude: join(__dirname, '../src/ui/assets/images'),
             use: ['@svgr/webpack'],
         });
 
