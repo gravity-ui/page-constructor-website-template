@@ -1,7 +1,8 @@
 const {join} = require('path');
 const {patchWebpackConfig} = require('next-global-css');
 
-const mode = process.env.EXPORT_MODE ? 'export' : 'default';
+const {getBuildMode, getPreprocessLoader} = require('./utils');
+const mode = getBuildMode();
 const modeRelatedConfig = require(`./modes/${mode}.js`);
 
 /** @type {import('next').NextConfig} */
@@ -32,6 +33,8 @@ module.exports = {
         if (!options.isServer) {
             config.resolve.fallback.fs = false;
         }
+
+        config.module.rules.push(getPreprocessLoader());
 
         // api routes are not supported on export mode, need to exclude it from build
         if (mode === 'export') {

@@ -10,7 +10,14 @@ import {useDevice} from '../ui/hooks/device';
 import {useRoutingData} from '../ui/hooks/router';
 import {useLocale} from '../ui/hooks/locale';
 
-export {getStaticPaths, getStaticProps} from '../dataGetters/static';
+//Next.js workaround https://github.com/vercel/next.js/discussions/15674
+// #!if BUILD_MODE === "export"
+export {getStaticProps, getStaticPaths} from '../dataGetters/static';
+// #!endif
+
+// #!if BUILD_MODE === "default"
+export {getServerSideProps} from '../dataGetters/server';
+// #!endif
 
 const projectSettings = {
     disableCompress: true,
