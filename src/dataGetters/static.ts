@@ -8,9 +8,9 @@ import withStaticAppData, {
     DEFAULT_PAGE,
     getPreloadParams,
     getStaticLocale,
-} from '../server/utils/pages/withStaticAppData';
-import {getPageContent} from '../server/api/pages-data';
-import {list as listPages} from '../server/api/pages-data/implementations/local-files';
+} from '../server/middleware/static-app-data';
+import {getPageContent, getPageList} from '../server/api/pages-data';
+import {Locale} from '../shared/models';
 
 const getPageSlugFromName = (pageName: string) =>
     pageName === DEFAULT_PAGE ? [''] : pageName.split('/');
@@ -21,7 +21,7 @@ export const getStaticProps: GetStaticProps = withStaticAppData((context: GetSta
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const locale = getStaticLocale();
-    const pages = await listPages(locale);
+    const pages = await getPageList(locale as Locale);
     const paths = pages.map((pageName: string) => {
         return {
             params: {

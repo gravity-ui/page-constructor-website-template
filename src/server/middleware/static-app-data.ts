@@ -1,8 +1,8 @@
 import {GetStaticPropsContext} from 'next/types';
-import {configureLang} from '../../../i18n';
-import preload from '../data/preload';
-import {ConstructorPageContent, PageContentBase} from '../../../shared/models';
-import {DEFAULT_LOCALE} from '../../../shared/constants';
+import {configureLang} from '../../i18n';
+import preload from '../utils/data/preload';
+import {ConstructorPageContent, PageContentBase} from '../../shared/models';
+import {DEFAULT_LOCALE} from '../../shared/constants';
 
 export type FetchPageData<T> = (context: GetStaticPropsContext) => Promise<T>;
 
