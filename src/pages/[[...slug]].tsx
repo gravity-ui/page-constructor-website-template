@@ -5,7 +5,7 @@ import componentMap from '../ui/constructor/componentMap';
 import Link from '../ui/components/Link';
 
 import {Page} from '../ui/containers/Page/Page';
-import {PageProps} from '../dataGetters/static';
+import {PageProps} from '../server/components/construtor/static';
 import {useDevice} from '../ui/hooks/device';
 import {useRoutingData} from '../ui/hooks/router';
 import {useLocale} from '../ui/hooks/locale';
@@ -14,11 +14,11 @@ import {useLocale} from '../ui/hooks/locale';
 // TODO: fix with migration from 'pages' to 'app' routing type
 
 // #!if BUILD_MODE === "export"
-export {getStaticProps, getStaticPaths} from '../dataGetters/static';
+export {getStaticProps, getStaticPaths} from '../server/components/construtor/static';
 // #!endif
 
 // #!if BUILD_MODE === "default"
-export {getServerSideProps} from '../dataGetters/server';
+export {getServerSideProps} from '../server/components/construtor/server';
 // #!endif
 
 const projectSettings = {

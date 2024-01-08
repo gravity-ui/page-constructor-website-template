@@ -4,8 +4,8 @@ import {
     InferGetServerSidePropsType,
 } from 'next/types';
 
-import {getPageContent} from '../server/api/pages-data';
-import withServerAppData, {getPreloadParams} from '../server/middleware/server-app-data';
+import {getPageContent} from '../../api/pages-data';
+import withServerAppData, {getPreloadParams} from '../../middleware/server-app-data';
 
 export const getServerSideProps: GetServerSideProps = withServerAppData(
     (context: GetServerSidePropsContext) => getPageContent(getPreloadParams(context)),

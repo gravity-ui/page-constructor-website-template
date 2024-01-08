@@ -1,6 +1,7 @@
 import {Locale} from './models';
 
 export const DEFAULT_LOCALE = Locale.En;
+export const DEFAULT_PAGE = 'index';
 export const COMMON_BODY_CLASS = 'g-root g-root_theme_light';
 export const LOGGER_PRETTY_OPTIONS = {
     colorize: true,

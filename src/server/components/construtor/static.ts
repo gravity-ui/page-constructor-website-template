@@ -4,16 +4,11 @@ import type {
     GetStaticPropsContext,
     InferGetStaticPropsType,
 } from 'next';
-import withStaticAppData, {
-    DEFAULT_PAGE,
-    getPreloadParams,
-    getStaticLocale,
-} from '../server/middleware/static-app-data';
-import {getPageContent, getPageList} from '../server/api/pages-data';
-import {Locale} from '../shared/models';
-
-const getPageSlugFromName = (pageName: string) =>
-    pageName === DEFAULT_PAGE ? [''] : pageName.split('/');
+import withStaticAppData, {getPreloadParams} from '../../middleware/static-app-data';
+import {getPageContent, getPageList} from '../../api/pages-data';
+import {Locale} from '../../../shared/models';
+import {getPageSlugFromName} from '../../utils/pages';
+import {getStaticLocale} from '../../utils/locale';
 
 export const getStaticProps: GetStaticProps = withStaticAppData((context: GetStaticPropsContext) =>
     getPageContent(getPreloadParams(context)),
