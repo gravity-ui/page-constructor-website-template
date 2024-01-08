@@ -1,1 +1,1 @@
-module.exports = require('./local');
+module.exports = require('./implementations/local-files');

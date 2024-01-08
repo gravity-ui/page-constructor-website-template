@@ -19,7 +19,7 @@ export const getPreloadParams = ({
     pageReferer: req.headers.referer,
 });
 
-export default function withAppData<T extends PageContentBase = ConstructorPageContent>(
+export default function withServerAppData<T extends PageContentBase = ConstructorPageContent>(
     fetchPageData: FetchPageData<T>,
 ) {
     return async function getServerSideProps(context: GetServerSidePropsContext) {

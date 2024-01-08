@@ -4,18 +4,18 @@ import type {
     GetStaticPropsContext,
     InferGetStaticPropsType,
 } from 'next';
-import withAppStaticData, {
+import withStaticAppData, {
     DEFAULT_PAGE,
     getPreloadParams,
     getStaticLocale,
 } from '../server/utils/pages/withStaticAppData';
 import {getPageContent} from '../server/api/pages-data';
-import {list as listPages} from '../server/api/pages-data/local';
+import {list as listPages} from '../server/api/pages-data/implementations/local-files';
 
 const getPageSlugFromName = (pageName: string) =>
     pageName === DEFAULT_PAGE ? [''] : pageName.split('/');
 
-export const getStaticProps: GetStaticProps = withAppStaticData((context: GetStaticPropsContext) =>
+export const getStaticProps: GetStaticProps = withStaticAppData((context: GetStaticPropsContext) =>
     getPageContent(getPreloadParams(context)),
 );
 

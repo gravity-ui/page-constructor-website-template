@@ -10,7 +10,7 @@ import {useDevice} from '../ui/hooks/device';
 import {useRoutingData} from '../ui/hooks/router';
 import {useLocale} from '../ui/hooks/locale';
 
-//Next.js workaround https://github.com/vercel/next.js/discussions/15674
+//Next.js conditional getServerSideProps usage workaround https://github.com/vercel/next.js/discussions/15674
 // #!if BUILD_MODE === "export"
 export {getStaticProps, getStaticPaths} from '../dataGetters/static';
 // #!endif

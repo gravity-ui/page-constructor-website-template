@@ -19,7 +19,7 @@ export function getPreloadParams(context: GetStaticPropsContext) {
     return {locale, pageName};
 }
 
-export default function withAppStaticData<T extends PageContentBase = ConstructorPageContent>(
+export default function withStaticAppData<T extends PageContentBase = ConstructorPageContent>(
     fetchPageData: FetchPageData<T>,
 ) {
     return async function getStaticProps(context: GetStaticPropsContext) {

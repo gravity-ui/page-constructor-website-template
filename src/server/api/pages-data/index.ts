@@ -1,11 +1,11 @@
 import yaml from 'js-yaml';
 
-import {preprocess} from '../utils/data/preprocess';
-import logger from '../logger';
-import {ConfigData, Locale, ConstructorPageContent, NavigationData} from '../../shared/models';
-import withCache, {getTTL, MINUTE} from '../utils/cache';
-import {get as getData} from './pages-data/impl';
-import {PreloadParams, RequestError} from '../utils';
+import {preprocess} from '../../utils/data/preprocess';
+import logger from '../../logger';
+import {ConfigData, Locale, ConstructorPageContent, NavigationData} from '../../../shared/models';
+import withCache, {getTTL, MINUTE} from '../../utils/cache';
+import {get as getData} from './impl';
+import {PreloadParams, RequestError} from '../../utils';
 
 export const CONTENT_PAGES_DIR = 'pages';
 export const CONTENT_DATA_DIR = 'data';

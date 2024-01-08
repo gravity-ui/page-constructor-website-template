@@ -5,9 +5,9 @@ import {
 } from 'next/types';
 
 import {getPageContent} from '../server/api/pages-data';
-import withAppData, {getPreloadParams} from '../server/utils/pages/withAppData';
+import withServerAppData, {getPreloadParams} from '../server/utils/pages/withServerAppData';
 
-export const getServerSideProps: GetServerSideProps = withAppData(
+export const getServerSideProps: GetServerSideProps = withServerAppData(
     (context: GetServerSidePropsContext) => getPageContent(getPreloadParams(context)),
 );
 
