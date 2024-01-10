@@ -1,11 +1,13 @@
 import yaml from 'js-yaml';
 
-import {preprocess} from '../utils/data/preprocess';
-import logger from '../logger';
-import {ConfigData, Locale, ConstructorPageContent, NavigationData} from '../../shared/models';
-import withCache, {getTTL, MINUTE} from '../utils/cache';
-import getData from './pages-data/impl';
-import {PreloadParams, RequestError} from '../utils';
+import {preprocess} from '../../utils/data/preprocess';
+import logger from '../../logger';
+import {ConfigData, Locale, ConstructorPageContent, NavigationData} from '../../../shared/models';
+import withCache, {getTTL, MINUTE} from '../../utils/cache';
+import {get} from './impl';
+import {PreloadParams, RequestError} from '../../utils';
+
+export {list as getPageList} from './impl';
 
 export const CONTENT_PAGES_DIR = 'pages';
 export const CONTENT_DATA_DIR = 'data';
@@ -27,7 +29,7 @@ export interface ApiResponseType extends Omit<ContentResponseType, 'data'> {
 }
 
 async function getContent(fileName: string, params: PreloadParams) {
-    const {statusCode, data, error} = await getData(fileName, params?.locale as Locale);
+    const {statusCode, data, error} = await get(fileName, params?.locale as Locale);
 
     if (error) {
         throw new RequestError(error, statusCode);

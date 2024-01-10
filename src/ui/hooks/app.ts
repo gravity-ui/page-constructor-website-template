@@ -1,10 +1,10 @@
-import {useRouter} from 'next/router';
 import {useEffect} from 'react';
 import {configureLang} from '../../i18n';
-import {DEFAULT_LOCALE} from '../../shared/constants';
+import {useLocale} from './locale';
+import {PageData} from '../../shared/models';
 
-export const useInitialize = () => {
-    const {locale = DEFAULT_LOCALE} = useRouter();
+export const useInitialize = ({locale: serverLocale}: PageData) => {
+    const locale = useLocale(serverLocale);
 
     useEffect(() => {
         configureLang(locale);

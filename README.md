@@ -18,7 +18,15 @@ cd my-app
 rm -rf .git
 ```
 
-## Development <a name="dev"></a>
+## Build modes
+
+Template supports two build modes:
+
+1. [Server side rendering (SSR)](https://nextjs.org/docs/pages/building-your-application/rendering/server-side-rendering)
+
+This mode is set by default.
+
+### Development
 
 ```bash
 npm ci
@@ -26,7 +34,7 @@ npm ci
 npm run dev
 ```
 
-## Production <a name="prod"></a>
+### Production
 
 ```bash
 npm ci
@@ -34,6 +42,30 @@ npm ci
 npm run build
 
 npm run start
+```
+
+2. [Static site generation (SSG)](https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation)
+
+SSG mode supports now only one locale, to set it use `EXPORT_LOCALE` env variable.
+
+### Development
+
+```bash
+npm ci
+
+npm run dev:export
+```
+
+### Production
+
+```bash
+npm ci
+
+# generate static production build and puts it to `out` folder.
+npm run build:export
+
+# run this locally to check everyting works in production mode
+npm run start:export
 ```
 
 ## Environment variables
@@ -52,13 +84,25 @@ You can define environment variables for dev-mode in `.env.local` file within pr
 
 `NAVIGATION_CACHE_TIME` (optional) - navigation data cache living time in production;
 
-Environment variables used on your Development VM:
+`EXPORT_MODE` (optional) - boolean, sets export mode on
+
+`EXPORT_LOCALE`(optional) - sets locale for export mode
 
 `DEV_MODE` - enables dev mode;
 
 ## Content
 
-To use custom api for getting page data implement method returning value of type `ContentResponseType` and export it from `src/server/api/pages-data/impl.js`.
+By default website template keeps it's content inside `content` folder in `.yaml` files, splitted by locales, e.g `content/en`, `content/fr`
+
+There are two types of content files:
+
+- `pages` - each file in the directory represents website page. Page url is defined by file name and path (`pages` folder equals to the site root). Page file data format is compatible with page-constructor [content](https://github.com/gravity-ui/page-constructor?tab=readme-ov-file#parameters)
+
+- `data` files keep whole site related data (navigation, meta, analytics configuration, etc). Navigtion file format is compatible with page-constructor [navigation](https://github.com/gravity-ui/page-constructor?tab=readme-ov-file#parameters)
+
+### Custom api
+
+To use custom api for getting page data implement method returning value of type `ContentResponseType` in `src/server/api/pages-data/implementations/` folder and export it from `src/server/api/pages-data/impl.js`.
 
 ```typescript
 interface ContentResponseType {

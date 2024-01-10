@@ -1,7 +1,7 @@
 import {GetServerSidePropsContext} from 'next';
-import {Env} from '../../../shared/models';
-import {getEnv} from '../env';
-import {FetchPageData} from './withAppData';
+import {Env} from '../../shared/models';
+import {getEnv} from '../utils/env';
+import {FetchPageData} from './server-app-data';
 
 const appEnv = getEnv();
 

@@ -5,9 +5,12 @@
   "scripts": {
     "dev": "npm run clean && next dev",
     "build": "npm run clean && next build",
+    "dev:export": "EXPORT_MODE=true npm run dev",
+    "build:export": "EXPORT_MODE=true npm run build && EXPORT_MODE=true next export",
     "start": "next start",
     "start:dev": "NODE_ENV=development next start",
-    "clean": "npx rimraf .next",
+    "start:export": "EXPORT_MODE=true next start",
+    "clean": "npx rimraf .next out",
     "typecheck": "tsc -p . --noEmit",
     "svgo": "svgo --multipass --pretty",
     "lint": "run-s lint:js lint:styles lint:prettier typecheck",
@@ -24,7 +27,7 @@
     "@bem-react/classname": "^1.6.0",
     "@doc-tools/transform": "^3.9.0",
     "@gravity-ui/i18n": "^1.0.0",
-    "@gravity-ui/page-constructor": "^4.9.0",
+    "@gravity-ui/page-constructor": "^4.43.1",
     "@gravity-ui/uikit": "^5.9.0",
     "csurf": "^1.11.0",
     "fast-json-parse": "^1.0.3",
@@ -77,7 +80,8 @@
     "svgo": "^2.8.0",
     "typescript": "^4.8.4",
     "typograf": "^6.14.0",
-    "url-loader": "^4.1.1"
+    "url-loader": "^4.1.1",
+    "webpack-preprocessor-loader": "^1.3.0"
   },
   "husky": {
     "hooks": {

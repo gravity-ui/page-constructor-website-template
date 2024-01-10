@@ -1,3 +1,4 @@
 import {Locale} from '../../../i18n';
 
-export default function getData(fileName: string, locale: Locale);
+export function get(fileName: string, locale: Locale);
+export function list(locale: Locale);

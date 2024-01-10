@@ -1,11 +1,11 @@
 import {GetServerSidePropsContext} from 'next/types';
-import {configureLang} from '../../../i18n';
-import {DEFAULT_LOCALE} from '../../../shared/constants';
-import logger from '../../logger';
-import getRoutingData, {getDeviceData} from '../common';
-import csrf, {ReqWithCSRF} from '../csrf';
-import preload, {getPageName, PreloadParams} from '../data/preload';
-import {ConstructorPageContent, PageContentBase} from '../../../shared/models';
+import {configureLang} from '../../i18n';
+import {DEFAULT_LOCALE} from '../../shared/constants';
+import logger from '../logger';
+import getRoutingData, {getDeviceData} from '../utils/common';
+import csrf, {ReqWithCSRF} from '../utils/csrf';
+import preload, {getPageName, PreloadParams} from '../utils/data/preload';
+import {ConstructorPageContent, PageContentBase} from '../../shared/models';
 
 export type FetchPageData<T> = (context: GetServerSidePropsContext) => Promise<T>;
 
@@ -19,7 +19,7 @@ export const getPreloadParams = ({
     pageReferer: req.headers.referer,
 });
 
-export default function withAppData<T extends PageContentBase = ConstructorPageContent>(
+export default function withServerAppData<T extends PageContentBase = ConstructorPageContent>(
     fetchPageData: FetchPageData<T>,
 ) {
     return async function getServerSideProps(context: GetServerSidePropsContext) {

@@ -4,12 +4,16 @@ import {
 } from '@gravity-ui/page-constructor';
 
 export interface RoutingData {
-    hostname: string;
+    hostname?: string;
 }
 
 export interface DeviceData {
-    isMobile: boolean;
-    isTablet: boolean;
+    isMobile?: boolean;
+    isTablet?: boolean;
+}
+
+export interface LocaleData {
+    lang: string;
 }
 
 export interface MetaData {
@@ -26,11 +30,16 @@ export type ConstructorPageContent = PageContent<ConstructorPageContentBase>;
 export type NavigationData = PageContent<ConstructorNavigaitonData>;
 export type ConfigData = ConstructorPageContent | NavigationData;
 
-export interface PageData<T extends PageContentBase = ConstructorPageContent> {
+export interface ServerDetectedProps {
+    locale?: string;
+    routingData?: RoutingData;
+    deviceData?: DeviceData;
+}
+
+export interface PageData<T extends PageContentBase = ConstructorPageContent>
+    extends ServerDetectedProps {
     pageContent: T;
     navigationData: NavigationData;
-    routingData: RoutingData;
-    deviceData: DeviceData;
     meta: MetaData;
     csrfToken: string;
     errorCode: number | null;

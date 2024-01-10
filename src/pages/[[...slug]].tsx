@@ -1,8 +1,3 @@
-import {
-    InferGetServerSidePropsType,
-    GetServerSidePropsContext,
-    GetServerSideProps,
-} from 'next/types';
 import {PageConstructor, PageConstructorProvider} from '@gravity-ui/page-constructor';
 
 import {PageData} from '../shared/models';
@@ -10,23 +5,42 @@ import componentMap from '../ui/constructor/componentMap';
 import Link from '../ui/components/Link';
 
 import {Page} from '../ui/containers/Page/Page';
-import {getPageContent} from '../server/api/pages-data';
-import withAppData, {getPreloadParams} from '../server/utils/pages/withAppData';
+import {PageProps} from '../server/components/construtor/static';
+import {useDevice} from '../ui/hooks/device';
+import {useRoutingData} from '../ui/hooks/router';
+import {useLocale} from '../ui/hooks/locale';
+
+// Next.js conditional getServerSideProps usage workaround https://github.com/vercel/next.js/discussions/15674
+// TODO: fix with migration from 'pages' to 'app' routing type
+
+// #!if BUILD_MODE === "export"
+export {getStaticProps, getStaticPaths} from '../server/components/construtor/static';
+// #!endif
+
+// #!if BUILD_MODE === "default"
+export {getServerSideProps} from '../server/components/construtor/server';
+// #!endif
 
 const projectSettings = {
     disableCompress: true,
 };
 
-const ConstructorPage: InferGetServerSidePropsType<typeof getServerSideProps> = ({
+const ConstructorPage: PageProps = ({
     pageContent,
     navigationData,
-    routingData,
-    deviceData,
+    routingData: serverRoutingData,
+    deviceData: serverDeviceData,
+    locale: serverLocale,
     ...pageProps
 }: PageData) => {
+    const deviceData = useDevice(serverDeviceData);
+    const routingData = useRoutingData(serverRoutingData);
+    const locale = useLocale(serverLocale);
+
     return (
         <Page
             {...pageProps}
+            locale={locale}
             routingData={routingData}
             deviceData={deviceData}
             navigationData={navigationData}
@@ -45,9 +59,5 @@ const ConstructorPage: InferGetServerSidePropsType<typeof getServerSideProps> = 
         </Page>
     );
 };
-
-export const getServerSideProps: GetServerSideProps = withAppData(
-    (context: GetServerSidePropsContext) => getPageContent(getPreloadParams(context)),
-);
 
 export default ConstructorPage;
