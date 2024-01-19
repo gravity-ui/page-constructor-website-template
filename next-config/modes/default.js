@@ -26,6 +26,10 @@ module.exports = {
                 destination: '/api/robots',
             },
             {
+                source: '/sitemap.xml',
+                destination: '/server-sitemap.xml',
+            },
+            {
                 source: '/ping',
                 destination: '/api/ping',
             },

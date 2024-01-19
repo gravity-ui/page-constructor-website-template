@@ -90,6 +90,8 @@ You can define environment variables for dev-mode in `.env.local` file within pr
 
 `DEV_MODE` - enables dev mode;
 
+`SITE_URL` - site url, it will be used for creating sitemap
+
 ## Content
 
 By default website template keeps it's content inside `content` folder in `.yaml` files, splitted by locales, e.g `content/en`, `content/fr`
@@ -111,3 +113,20 @@ interface ContentResponseType {
   data?: ConstructorPageContent;
 }
 ```
+
+## Sitemap and Robots.txt
+
+### Default mode
+
+1. Set the SITE_URL for sitemap
+2. You can find sitemap in src/pages/server-sitemap.xml
+
+### For SSG mode (EXPORT_MODE)
+
+1. Set the SITE_URL for sitemap
+2. Every build we use next-sitemap to auto-generate sitemap and robots
+
+### If sitemap is not necessary
+
+1. For SSG mode (EXPORT_MODE) - fix command `build:export` in package.json and remove src/pages/server-sitemap.xml
+2. For Default mode - remove src/pages/server-sitemap.xml
