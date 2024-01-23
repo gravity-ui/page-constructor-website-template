@@ -8,3 +8,4 @@ export const LOGGER_PRETTY_OPTIONS = {
     ignore: 'pid,hostname,name',
     translateTime: 'HH:MM:ss Z',
 };
+export const SITE_URL = process.env.SITE_URL;
