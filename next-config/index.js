@@ -1,10 +1,11 @@
 const {join} = require('path');
 const {patchWebpackConfig} = require('next-global-css');
 
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+
 const {getBuildMode, getPreprocessLoader} = require('./utils');
 const mode = getBuildMode();
 const modeRelatedConfig = require(`./modes/${mode}.js`);
-const {InterityManifestPlugin} = require('./plugins/integrity');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -52,7 +53,11 @@ module.exports = {
         // adding SRI
         if (isProd && !isServer) {
             config.output.crossOriginLoading = 'anonymous';
-            config.plugins.push(new InterityManifestPlugin());
+            config.plugins.push(
+                new WebpackAssetsManifest({
+                    integrity: true,
+                }),
+            );
         }
 
         return config;
