@@ -4,6 +4,9 @@ const {patchWebpackConfig} = require('next-global-css');
 const {getBuildMode, getPreprocessLoader} = require('./utils');
 const mode = getBuildMode();
 const modeRelatedConfig = require(`./modes/${mode}.js`);
+const {InterityManifestPlugin} = require('./plugins/integrity');
+
+const isProd = process.env.NODE_ENV === 'production';
 
 /** @type {import('next').NextConfig} */
 module.exports = {
@@ -16,6 +19,8 @@ module.exports = {
         includePaths: [join(__dirname, 'src/ui/styles')],
     },
     webpack: (config, options) => {
+        const {isServer} = options;
+
         patchWebpackConfig(config, options);
 
         config.module.rules.push({
@@ -30,7 +35,7 @@ module.exports = {
             use: ['@svgr/webpack'],
         });
 
-        if (!options.isServer) {
+        if (!isServer) {
             config.resolve.fallback.fs = false;
         }
 
@@ -42,6 +47,12 @@ module.exports = {
                 test: /src\/app\/api/,
                 loader: 'ignore-loader',
             });
+        }
+
+        // adding SRI
+        if (isProd && !isServer) {
+            config.output.crossOriginLoading = 'anonymous';
+            config.plugins.push(new InterityManifestPlugin());
         }
 
         return config;
