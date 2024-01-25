@@ -11,7 +11,6 @@ interface ManifestAsset {
 type IntegrityManifest = Record<string, string>;
 
 const MANIFEST_PATH = '.next/assets-manifest.json';
-const HASH_FUNC_NAME = 'sha384';
 let integrityManifest: IntegrityManifest;
 
 export function getIntegrityManifest() {
@@ -24,11 +23,7 @@ export function getIntegrityManifest() {
 
             integrityManifest = Object.values(assetsManifests).reduce<IntegrityManifest>(
                 (result, {src, integrity}) => {
-                    const hash = getHashByFuncName(integrity, HASH_FUNC_NAME);
-
-                    if (hash) {
-                        result[src] = hash;
-                    }
+                    result[src] = integrity;
 
                     return result;
                 },
@@ -60,8 +55,4 @@ export function addIntegrity(scripts: JSX.Element[]) {
 
         return script;
     });
-}
-
-function getHashByFuncName(fullIntegrity: string, funcName: string) {
-    return fullIntegrity.split(' ').find((hash) => hash.startsWith(funcName));
 }

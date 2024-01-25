@@ -56,6 +56,7 @@ module.exports = {
             config.plugins.push(
                 new WebpackAssetsManifest({
                     integrity: true,
+                    integrityHashes: ['sha384'],
                 }),
             );
         }
