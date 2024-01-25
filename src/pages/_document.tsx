@@ -13,13 +13,11 @@ class CustomHead extends Head {
 
         return addIntegrity(scripts);
     }
-}
 
-class CustomNextScript extends NextScript {
-    getScripts(files: DocumentFiles) {
-        const scripts = super.getScripts(files);
+    getPolyfillScripts() {
+        const polyfills = super.getPolyfillScripts();
 
-        return addIntegrity(scripts);
+        return addIntegrity(polyfills);
     }
 }
 
@@ -34,7 +32,7 @@ class CustomDocument extends Document {
                 <CustomHead>{assetsPath && <Favicon assetsPath={assetsPath} />}</CustomHead>
                 <body className={COMMON_BODY_CLASS}>
                     <Main />
-                    <CustomNextScript />
+                    <NextScript />
                 </body>
             </Html>
         );
