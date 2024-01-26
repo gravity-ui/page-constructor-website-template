@@ -11,7 +11,7 @@ const SHA_FUNC = 'sha384';
 
 const assetsManifest = JSON.parse(readFileSync(ASSETS_MANIFEST_PART).toString());
 
-// Next.js patches some script files (like '_ssgManifest.js') after build, so need to run script like this to recalculate pathced file hashes and replace it in html files
+// Next.js patches some script files (like '_ssgManifest.js') after build, so need to run script like this to recalculate patched file hashes and replace it in html files
 function main() {
     const replacementPairs = POSTBUILD_PATCHED_FILES.map(getReplacementPair).filter(Boolean);
 
