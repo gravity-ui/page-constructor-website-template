@@ -11,7 +11,7 @@ import '../ui/styles/globals.css';
 
 configureLang();
 
-function MyApp({Component, pageProps}: AppProps) {
+function CustomApp({Component, pageProps}: AppProps) {
     useInitialize(pageProps);
 
     return (
@@ -21,4 +21,4 @@ function MyApp({Component, pageProps}: AppProps) {
     );
 }
 
-export default MyApp;
+export default CustomApp;
