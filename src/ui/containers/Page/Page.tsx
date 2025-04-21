@@ -15,7 +15,7 @@ export interface PageProps
     extends Omit<PageData, 'pageContent' | keyof ServerDetectedProps>,
         Required<Pick<PageData, keyof ServerDetectedProps>> {}
 
-export const Page: React.FC<PageProps> = ({
+export const Page = ({
     meta,
     locale,
     routingData,
@@ -23,7 +23,7 @@ export const Page: React.FC<PageProps> = ({
     errorCode,
     csrfToken,
     children,
-}) => {
+}: React.PropsWithChildren<PageProps>) => {
     const {asPath} = useRouter();
 
     if (errorCode) {

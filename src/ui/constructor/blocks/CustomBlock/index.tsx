@@ -12,7 +12,7 @@ export interface CustomBlockProps {
 
 const b = block('custom-block');
 
-const CustomBlock: React.FC<CustomBlockProps> = ({title, text}) => (
+const CustomBlock = ({title, text}: CustomBlockProps) => (
     <Title className={b()} title={title} subtitle={text} />
 );
 

@@ -5,7 +5,10 @@ export interface ErrorBoundaryState {
     hasError?: boolean;
 }
 
-export default class ErrorBoundary extends React.Component<{}, ErrorBoundaryState> {
+export default class ErrorBoundary extends React.Component<
+    React.PropsWithChildren,
+    ErrorBoundaryState
+> {
     static getDerivedStateFromError() {
         return {hasError: true};
     }

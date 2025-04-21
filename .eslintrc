@@ -4,6 +4,9 @@
         "@gravity-ui/eslint-config",
         "@gravity-ui/eslint-config/prettier"
     ],
+    "parserOptions": {
+        "project": ["./tsconfig.json"]
+    },
     "root": true,
     "env": {
         "node": true

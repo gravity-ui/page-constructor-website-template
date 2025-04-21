@@ -22,7 +22,7 @@ const renderIconLink = (size: number, folder: string, rel = 'icon') => {
     );
 };
 
-const Favicon: React.FC<FaviconProps> = ({assetsPath}) => {
+const Favicon = ({assetsPath}: FaviconProps) => {
     const folder = `${assetsPath}/favicon`;
 
     return (
