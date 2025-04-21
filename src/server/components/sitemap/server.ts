@@ -1,6 +1,6 @@
 import {
-    GetServerSidePropsContext,
     GetServerSideProps,
+    GetServerSidePropsContext,
     InferGetServerSidePropsType,
 } from 'next/types';
 import {getServerSideSitemapLegacy} from 'next-sitemap';

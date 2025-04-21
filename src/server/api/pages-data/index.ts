@@ -2,8 +2,8 @@ import yaml from 'js-yaml';
 
 import {preprocess} from '../../utils/data/preprocess';
 import logger from '../../logger';
-import {ConfigData, Locale, ConstructorPageContent, NavigationData} from '../../../shared/models';
-import withCache, {getTTL, MINUTE} from '../../utils/cache';
+import {ConfigData, ConstructorPageContent, Locale, NavigationData} from '../../../shared/models';
+import withCache, {MINUTE, getTTL} from '../../utils/cache';
 import {get} from './impl';
 import {PreloadParams, RequestError} from '../../utils';
 
@@ -39,7 +39,7 @@ async function getContent(fileName: string, params: PreloadParams) {
         const content = (data && yaml.load(data)) as ConfigData;
 
         return preprocess(content, params);
-    } catch (_error) {
+    } catch {
         throw new RequestError(`Error reading data for page ${params?.pageName}`, 500);
     }
 }

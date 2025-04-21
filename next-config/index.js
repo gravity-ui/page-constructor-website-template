@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const {join} = require('path');
 const {patchWebpackConfig} = require('next-global-css');
 
@@ -15,7 +16,13 @@ module.exports = {
     reactStrictMode: true,
     trailingSlash: true,
     compress: true,
-    transpilePackages: ['@doc-tools/components'],
+    transpilePackages: [
+        '@doc-tools/components',
+        '@gravity-ui/uikit',
+        '@gravity-ui/page-constructor',
+        '@gravity-ui/components',
+        'swiper',
+    ],
     sassOptions: {
         includePaths: [join(__dirname, 'src/ui/styles')],
     },

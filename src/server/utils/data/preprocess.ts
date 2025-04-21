@@ -1,10 +1,11 @@
 import _ from 'lodash';
-import {Block, ConstructorBlock, Lang} from '@gravity-ui/page-constructor';
+import {Block, ConstructorBlock} from '@gravity-ui/page-constructor';
 import {contentTransformer, yfmTransformer} from '@gravity-ui/page-constructor/server';
 
 import {ConfigData, isPageConfig} from '../../../shared/models';
 import {BlockType} from '../../../shared/models/constructor';
 import {PreloadParams} from './preload';
+import {Lang} from '@gravity-ui/uikit';
 
 /**
  * Function processes page or navigation configs data text with typograf and yfm text transformers.

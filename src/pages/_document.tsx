@@ -1,5 +1,5 @@
 import React from 'react';
-import Document, {Html, Head, Main, NextScript} from 'next/document';
+import Document, {Head, Html, Main, NextScript} from 'next/document';
 import {COMMON_BODY_CLASS} from '../shared/constants';
 import {default as config} from '../server/configs/env';
 import Favicon from '../ui/components/Favicon';
