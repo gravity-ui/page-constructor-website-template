@@ -1,9 +1,9 @@
 import {readFile, readdir, stat} from 'fs/promises';
-import {resolve, join} from 'path';
+import {join, resolve} from 'path';
 import {Locale} from '../../../../shared/models';
 import {ApiResponseType} from '..';
 
-import {getPageConfigFilename, isNodeError, cutFileExtension} from '../utils';
+import {cutFileExtension, getPageConfigFilename, isNodeError} from '../utils';
 
 const CONTENT_DIR = 'content';
 const NOT_FOUND_ERROR_CODE = 'ENOENT';

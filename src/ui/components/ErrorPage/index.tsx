@@ -21,7 +21,7 @@ const i18nK = i18n('error');
 
 const getPublicCode = (code: number) => (code === 404 ? 404 : 500);
 
-const ErrorPage: React.FC<ErrorPageProps> = ({code = 500}) => {
+const ErrorPage = ({code = 500}: ErrorPageProps) => {
     const publicCode = getPublicCode(code);
     const title = i18nK(`label_meta-title-${publicCode}`);
     const imgSrc = code === 404 ? Icon404 : Icon500;

@@ -7,7 +7,7 @@ export interface MetaPropsType {
     data: MetaData;
 }
 
-const Meta: React.FC<MetaPropsType> = ({data: {title, description}}) => {
+const Meta = ({data: {title, description}}: MetaPropsType) => {
     return (
         <Head>
             <title>{title}</title>

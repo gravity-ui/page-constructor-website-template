@@ -3,7 +3,7 @@ import os from 'os';
 import split from 'split2';
 import Parse from 'fast-json-parse';
 import {LogDescriptor} from 'pino';
-import {DefaultLogDescriptor, DefaultLevelsMap, LogFields} from '../models';
+import {DefaultLevelsMap, DefaultLogDescriptor, LogFields} from '../models';
 
 const EOL = os.EOL;
 

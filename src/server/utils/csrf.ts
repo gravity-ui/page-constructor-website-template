@@ -23,7 +23,7 @@ export const withCSRFCheck = (handler: ApiHandler) =>
     async function (req: NextApiRequest, res: NextApiResponse) {
         try {
             await csrf(req, res);
-        } catch (e) {
+        } catch {
             return res.status(401).json({error: 'Access denied'});
         }
 

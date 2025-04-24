@@ -5,7 +5,7 @@ const {readFileSync, writeFileSync} = require('fs');
 
 const BUILD_DIR = '.next';
 const ASSETS_MANIFEST_PART = join(BUILD_DIR, 'assets-manifest.json');
-const NEXT_OUT_DIR = '.next/server/pages';
+const NEXT_OUT_DIR = 'out';
 const POSTBUILD_PATCHED_FILES = ['_ssgManifest.js'];
 const SHA_FUNC = 'sha384';
 

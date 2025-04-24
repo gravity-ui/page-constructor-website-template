@@ -22,11 +22,7 @@ export function getIntegrityManifest() {
             >;
 
             integrityManifest = Object.values(assetsManifests).reduce<IntegrityManifest>(
-                (result, {src, integrity}) => {
-                    result[src] = integrity;
-
-                    return result;
-                },
+                (result, {src, integrity}) => Object.assign(result, {[src]: integrity}),
                 {},
             );
         } catch (error) {

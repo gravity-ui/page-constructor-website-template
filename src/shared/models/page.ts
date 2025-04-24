@@ -1,6 +1,6 @@
 import {
-    PageContent as ConstructorPageContentBase,
     NavigationData as ConstructorNavigaitonData,
+    PageContent as ConstructorPageContentBase,
 } from '@gravity-ui/page-constructor';
 
 export interface RoutingData {

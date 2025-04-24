@@ -1,6 +1,5 @@
 import {I18N} from '@gravity-ui/i18n';
-import {configure as uikitConfigure, Lang as UIKitLang} from '@gravity-ui/uikit';
-import {configure as pcConfigure, Lang as PCLang} from '@gravity-ui/page-constructor';
+import {Lang as UIKitLang, configure as gravityConfigure} from '@gravity-ui/uikit';
 
 import * as en from './en';
 
@@ -9,8 +8,6 @@ export enum Locale {
 }
 
 export const i18n = new I18N();
-
-i18n.setLang(Locale.En);
 
 Object.keys(en).forEach((key) =>
     i18n.registerKeyset(
@@ -21,8 +18,8 @@ Object.keys(en).forEach((key) =>
 );
 
 export const configureLang = (locale: string = Locale.En) => {
-    uikitConfigure({lang: locale as UIKitLang});
-    pcConfigure({lang: locale as PCLang});
+    i18n.setLang(Locale.En);
+    gravityConfigure({lang: locale as UIKitLang});
 };
 
 const getKeyset = (keyset: string) => i18n.keyset(keyset);

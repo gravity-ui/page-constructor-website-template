@@ -4,7 +4,7 @@ import {DEFAULT_LOCALE} from '../../shared/constants';
 import logger from '../logger';
 import getRoutingData, {getDeviceData} from '../utils/common';
 import csrf, {ReqWithCSRF} from '../utils/csrf';
-import preload, {getPageName, PreloadParams} from '../utils/data/preload';
+import preload, {PreloadParams, getPageName} from '../utils/data/preload';
 import {ConstructorPageContent, PageContentBase} from '../../shared/models';
 
 export type FetchPageData<T> = (context: GetServerSidePropsContext) => Promise<T>;
