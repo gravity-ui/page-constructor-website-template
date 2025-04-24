@@ -17,7 +17,6 @@ module.exports = {
     trailingSlash: true,
     compress: true,
     transpilePackages: [
-        '@doc-tools/components',
         '@gravity-ui/uikit',
         '@gravity-ui/page-constructor',
         '@gravity-ui/components',

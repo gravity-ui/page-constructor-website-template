@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@bem-react/classname": "^1.6.0",
-    "@doc-tools/transform": "^3.9.0",
+    "@diplodoc/transform": "^4.56.0",
     "@gravity-ui/i18n": "^1.0.0",
     "@gravity-ui/page-constructor": "^6.7.0",
     "@gravity-ui/uikit": "^7.9.1",
